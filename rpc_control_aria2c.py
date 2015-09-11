@@ -1,10 +1,10 @@
 #!/usr/bin/python
 import urllib2,xmlrpclib
-import os
+import os,sys
 import threading
 import time
 
-def daemonize(self):
+def daemonize():
   stdin = '/dev/null'
   stderr = '/dev/null'
   stdout = '/dev/null'
@@ -45,10 +45,10 @@ def daemonize(self):
 
 daemonize()
 
-saeHttpServer='http://xxxxxx.sinaapp.com/geturl'
+saeHttpServer='http://xxxxx.sinaapp.com/geturl'
 aria2c_rpc_url='http://192.168.0.202:6800/rpc'
 server = xmlrpclib.ServerProxy(aria2c_rpc_url)
-SLEEP_TIME = 5
+SLEEP_TIME = 2
 
 req = urllib2.Request(saeHttpServer)
 while True:

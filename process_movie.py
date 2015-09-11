@@ -14,7 +14,6 @@ def debug_log(msg):
 
 
 def mkv_cmd(mkvfile,srtfile,finpath,origin_path):
-
 	dir_name = os.path.dirname(mkvfile)
 	_srtfile = dir_name+'/'+srtfile
 	outfile = os.path.splitext(mkvfile)[0] + '.MKV_FINISHED' + os.path.splitext(mkvfile)[1]
@@ -41,20 +40,20 @@ def mkv_cmd(mkvfile,srtfile,finpath,origin_path):
 	debug_log('os rename mkv origin %s,%s'%(mkvfile,origin_mkv_finpath))
 	debug_log('os rename srt origin %s,%s'%(_srtfile,origin_srt_finpath))
 	
-#	srt_finpath='%s/%s' % (finpath,os.path.basename(_srtfile))
-#	os.rename(mkvfile,mkv_finpath)
-#	os.rename(_srtfile,srt_finpath)
-#	os.system('/etc/init.d/minidlna force-reload')
-#	time.sleep(5)
-#	os.system('/etc/init.d/minidlna restart')
-
 def procMovie(complist,srtlist,finpath,origin_path):
+	over_list = []
 	for m in xrange(len(srtlist)):
 		for n in xrange(len(complist)):
 			comp_name = os.path.basename(complist[n])
 			if os.path.splitext(comp_name)[0] in srtlist[m]:
 				debug_log('the complist file is :%s\n\nthe srt list file is :%s'%(complist[n],srtlist[m]))
 				mkv_cmd(complist[n],srtlist[m],finpath,origin_path)
+				over_list.append(complist[n])
+
+	over_list = set(over_list)
+	complist = set(complist)
+	for f in over_list^complist:
+		os.rename(f,'%s/%s' % (finpath,os.path.basename(f)))
 
 def unzip(source_zip):
 	srt_fname = []
@@ -111,11 +110,21 @@ def main():
 	if len(comp_list) and len(srt_list): 
 		procMovie(comp_list,srt_list,finpath,origin_path)
 
+	elif len(comp_list) and not len(srt_list): 
+		for f in comp_list:
+			os.rename(f,'%s/%s' % (finpath,os.path.basename(f)))
+
+	else:
+		os.mkdir('no_proc_file')
+
 if __name__ == '__main__' :
 	url = 'http://localhost:6800/rpc'
 	server = xmlrpclib.ServerProxy(url)
 	active = server.aria2.tellActive()
-	if not active:
-		main()
-	else:
+	if active and os.path.exists('./no_proc_file'):
 		print 'the aria2c is have a downloading'
+		os.rmdir('./no_proc_file')
+	elif not os.path.exists('./no_proc_file'):
+		main()
+	else :
+		pass
