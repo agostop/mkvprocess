@@ -1,6 +1,7 @@
 #!/usr/bin/python
-import urllib2,xmlrpclib
-import os,sys
+#import urllib2,xmlrpclib
+import requests
+import os
 import threading
 import time
 
@@ -45,21 +46,21 @@ def daemonize():
 
 daemonize()
 
-saeHttpServer='http://xxxxx.sinaapp.com/geturl'
+saeHttpServer='http://agostop.sinaapp.com/geturl'
 aria2c_rpc_url='http://192.168.0.202:6800/rpc'
 server = xmlrpclib.ServerProxy(aria2c_rpc_url)
-SLEEP_TIME = 2
+SLEEP_TIME = 5
 
-req = urllib2.Request(saeHttpServer)
+req = requests.Session()
 while True:
 	try:
-		time.sleep(1)
 		downlist=[]
 		opt={}
-		ret = urllib2.urlopen(req).read()
+		ret = req.get(saeHttpServer)
 		
-		if ret:
-			content = ret.split()
+		if ret.text:
+			ret_content = ret.text
+			content = ret_content.split()
 			downlist.append(content[0])
 			if len(content) == 2:
 				option = content[1]
