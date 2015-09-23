@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import xmlrpclib
+#import urllib2,xmlrpclib
 import requests
-import os,sys
+import os
 import threading
 import time
 
@@ -43,37 +43,46 @@ def daemonize():
   os.dup2(so.fileno(), sys.stdout.fileno())
   os.dup2(se.fileno(), sys.stderr.fileno())
 
+def get_task():
+	saeHttpServer='http://agostop.sinaapp.com/geturl'
+	aria2c_rpc_url='http://192.168.0.202:6800/rpc'
+	server = xmlrpclib.ServerProxy(aria2c_rpc_url)
+	SLEEP_TIME = 5
 
-daemonize()
-
-saeHttpServer='http://agostop.sinaapp.com/geturl'
-aria2c_rpc_url='http://192.168.0.202:6800/rpc'
-server = xmlrpclib.ServerProxy(aria2c_rpc_url)
-SLEEP_TIME = 5
-
-req = requests.Session()
-while True:
-	try:
+	req = requests.Session()
+	while True:
 		downlist=[]
 		opt={}
-		ret = req.get(saeHttpServer)
+		try:
+			ret = req.get(saeHttpServer)
+		except :
+			break
 		
-		if ret.text:
-			ret_content = ret.text
-			content = ret_content.split()
-			downlist.append(content[0])
-			if len(content) == 2:
-				option = content[1]
-				opt[ option.split('=')[0] ] = option.split('=')[1]
-				aria_gid = server.aria2.addUri(downlist,opt)
-				print 'have a url : %s \nthe option is : %s'%(content,opt)
+		try:
+			if ret.text:
+				ret_content = ret.text
+				content = ret_content.split()
+				downlist.append(content[0])
+				if len(content) == 2:
+					option = content[1]
+					opt[ option.split('=')[0] ] = option.split('=')[1]
+					aria_gid = server.aria2.addUri(downlist,opt)
+					print 'have a url : %s \nthe option is : %s'%(content,opt)
+				else:
+					aria_gid = server.aria2.addUri(downlist)
 			else:
-				aria_gid = server.aria2.addUri(downlist)
-	
-		else:
-			print 'not have task, wait...'
-		
-	except Exception,ex:
-		print '% : %'%(Exception,ex)
+				print 'not have task, wait...'
+		except Exception,ex:
+			print Exception,':',ex
 
-	time.sleep(SLEEP_TIME)
+		time.sleep(SLEEP_TIME)
+
+if __name__ == '__main__':
+	daemonize()
+	while True:
+		time.sleep(1)
+		if threading.activeCount() == 1 :
+			t = threading.Thread(target=get_task, name='get_task',args=())
+			t.setDaemon(True)
+			t.start()
+
