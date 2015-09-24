@@ -124,7 +124,7 @@ if __name__ == '__main__' :
 	if active and os.path.exists('./no_proc_file'):
 		print 'the aria2c is have a downloading'
 		os.rmdir('./no_proc_file')
-	elif not os.path.exists('./no_proc_file'):
+	elif not active and not os.path.exists('./no_proc_file'):
 		main()
 	else :
 		pass
