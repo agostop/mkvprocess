@@ -1,0 +1,7 @@
+name: agostop
+version: 1
+
+cron:
+#- description: cron
+#  url: /getakey
+#  schedule: "*/30 * * * *"

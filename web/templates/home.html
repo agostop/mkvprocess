@@ -1,0 +1,265 @@
+<html>
+<head>
+  <title>Home</title>
+	<style type=text/css>
+body {
+	font-family:"Hiragino Sans GB","Microsoft YaHei",tahoma,微软雅黑,arial,simsun,宋体;
+	color:#333;
+	background-color: #333;
+	font-size:12px;
+	line-height:1.75em;
+	margin:0;
+	background-attachment:fixed;
+	background:url(../static/image/5629501733236383089.jpg) #333;
+}
+.body {
+	width: 90%;
+	margin:0 10px;
+	position:relative;
+}
+.body, .leftnav {
+	text-shadow:0 1px 1px rgba(255,255,255,1);
+	-webkit-text-shadow:0 1px 1px rgba(255,255,255,1);
+	-moz-text-shadow:0 1px 1px rgba(255,255,255,1);
+	-o-text-shadow:0 1px 1px rgba(255,255,255,1);
+}
+
+
+.posts {
+	float:left;
+	display:inline;
+	padding:10px 0px 0;
+	margin: 0 0 15px 190px;
+}
+.post {
+	float:left;
+	margin:0 3px;
+	display:inline;
+	position:relative;
+}
+
+.postphoto {
+	
+	width:250px;
+	
+	
+}
+div.postphoto .photowrap{position:relative;}
+
+.photolink{background:url(../static/image/5629509429817770396.jpg) no-repeat 9999px 9999px;}
+
+div.postphoto a.photolink{position:absolute;
+	z-index:6;
+	top:0;
+	left:0;display:block;width:100%;height:100%;cursor:pointer;zoom:1;
+}
+
+div.postphoto a.photolink2{z-index:5 !important;_z-index:7;}
+
+div.postphoto .ppimg {
+	display:block;
+	width:100%;
+	height:100%;
+	position:absolute;
+	zoom:1;
+}
+div.postphoto .ppimg .imgmeta {
+	display:block;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:url(../static/image/5629509429817770391.jpg);
+	visibility:hidden;
+	z-index:998;
+	text-align:center;
+*
+	
+	-moz-border-radius-topright: 3px;
+	border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	border-top-left-radius: 3px;
+	
+	font-family:arial,"Hiragino Sans GB","Microsoft YaHei",微软雅黑,simsun,宋体;
+	font-weight:lighter;
+}
+div.postphoto .ppimg .imgmeta .imglayer {
+	display:block;
+	position:absolute;
+	top:50%;
+	left:50%;
+	margin-left:-60px;
+	width:120px;
+	margin-top:-18px;
+	height:36px;
+	text-align:center;
+	z-index:999;
+	color:#FFF;
+}
+div.postphoto .ppimg .imgmeta .imglayer span.pbtime {
+	font-size:18px;
+	line-height:15px;
+}
+.postfooter {
+	position:relative;
+	padding:10px 15px;
+}
+.postfooter .postdesc {
+	position:absolute;
+	background:url(../static/image/5629509429817770387.jpg);
+	_background:none;
+	width:21px;
+	height:8px;
+	left: 16px;
+	top: -8px;
+	z-index:999;
+}
+.postmeta {
+	border-top:1px dashed #EEE;
+	padding: 5px 0 0 0;
+	position:relative;
+	height:15px;
+}
+div.effictive {
+	height:17px;
+	width:250px;
+	background:url(../static/image/5629509429817770396.jpg) no-repeat center !important;
+	_background:none;
+}
+a img {
+	border:0;
+}
+a:link, a:visited {
+	color:#333;
+	text-decoration:none;
+	-webkit-transition: all .3s ease-out;
+    	-moz-transition: all .3s ease-out;
+    	-o-transition: all .3s ease-out;
+    	transition: all .3s ease-out;
+}
+a:link, a:visited {
+	color:#333;
+	text-decoration:none;
+	-webkit-transition: all .3s ease-out;
+    	-moz-transition: all .3s ease-out;
+    	-o-transition: all .3s ease-out;
+    	transition: all .3s ease-out;
+}
+div.postphoto .ppimg .imgmeta .imglayer a,div.postphoto .ppimg .imgmeta .imglayer a:hover {
+	text-decoration:none;
+	color:#FFF;
+	-webkit-transition: all .0s ease-out;
+    -moz-transition: all .0s ease-out;
+    -o-transition: all .0s ease-out;
+    transition: all .0s ease-out;
+}
+div.postphoto .ppimg:hover .imgmeta {
+	visibility:visible;
+}
+p {
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+.postphoto img {
+	width:auto !important;
+	max-width:250px;
+	_width:250px;
+	-webkit-transition-duration: 0.5s;
+	-moz-border-radius-topright: 3px;
+	border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	border-top-left-radius: 3px;
+}
+.posttext,.postphoto,.postmusic,.postvideo {
+	background:#fff;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+	-webkit-box-shadow: #333 0px 0px 3px;
+	overflow:hidden;
+	word-wrap:break-word;
+}
+.postmeta .permalinkicon {
+	width:12px;
+	height:13px;
+	cursor:pointer;
+	overflow:hidden;
+	float:left;
+	background: url(../static/image/5629509429817770394.jpg) #333 no-repeat;
+}
+a:hover, a:active {
+	text-decoration:none;
+	color:#09C;
+	-webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+div.footer {
+	padding: 25px 0 25px 190px;
+	clear:both;
+}
+
+div.footer .icon {
+	background:url(../static/image/5629509429817770390.png);
+	height:39px;
+	margin: 0 2px;
+	cursor:pointer;
+}
+div.footer .leftside {
+	float:left;
+}
+div.footer .rightside {
+	float:right;
+}
+div.footer .top {
+	background-position: -182px 0;
+	width:30px;
+}
+div.footer .next {
+	background-position: -210px 0;
+	width:39px;
+}
+div.footer .archive {
+	background-position: 0 0;
+	width: 30px;
+}
+div.footer .rss {
+	background-position: -58px 0;
+	width: 30px;
+}
+
+.postvideo {
+	width:250px;
+}
+
+
+
+
+	</style>
+</head>
+<body>
+<div class="body">
+	<div class="posts">
+				{% include ('image_block.html') %}
+				{% include ('video_block.html') %}
+	</div>
+	{% include ('footer.html') %}
+</div>
+<script type="text/javascript" src="../static/js/jquery-1.6.2.min.js"></script>
+<script src="../static/js/5629524822980561699.js"></script>
+<script type="text/javascript">
+	$(window).load(function () {
+		$('.posts').masonry();
+	});
+</script>
+</body>
+</html>

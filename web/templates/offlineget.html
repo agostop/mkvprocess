@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body>
+{% if TASK != 3 %}
+	<p>目前任务为：{{TASK}} 个，只能提交3个任务</p>
+		<form action="/pullurl" method="POST">
+			<!-- <input type="text" name="url" value="url"/>
+				<p>out filename:</p><input type="text" name="opt" value="option" style="width:545px;height:50px"/>
+				-->
+			<p>URL:</p>
+				<textarea name="url" id="message" style="width: 275px; height: 65px;"></textarea>
+			<p>out filename:</p>
+				<textarea name="opt" id="message" style="width: 275px; height: 35px;"></textarea>
+			<br>
+		    <input type="submit" value="submit"/>
+		</form>  
+{% else %}
+	<p>目前已经达到最大任务数上限，请稍等再试</p>
+{% endif %}
+</body>
+</html>
